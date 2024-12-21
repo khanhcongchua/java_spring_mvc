@@ -10,7 +10,18 @@ public class HelloController {
 
     @GetMapping("/")
     public String index() {
-        return "Hello World from Khanh Cong Chua!";
+        return "Hello World";
+    }
+
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "Just Admin Access this admin page";
+    }
+
+    @GetMapping("/user")
+    public String user() {
+        return "Just User access this user page";
     }
     
     
