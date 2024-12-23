@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
 
 @Controller
 public class UserController {
     // DI: Dependancy Injection
-    private UserService userService;
+    private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService
+    ) {
         this.userService = userService;
     }
 
     @RequestMapping("/")
     public String getHomePage(Model model){
-        String test = this.userService.handleHello();
-        model.addAttribute("eric", test);
+        model.addAttribute("eric", "test");
         model.addAttribute("hoidanit", "from with model");
         return "hello";
     }
@@ -33,12 +34,15 @@ public class UserController {
     public String getUserPage(Model model){
         model.addAttribute("newUser", new User());
         return "admin/user/create";
+
     }
 
 
     @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit){
+        
         System.out.println("run here!" + hoidanit);
+        this.userService.handlSaveUser(hoidanit);
         return "hello";
     }
 }
