@@ -28,11 +28,18 @@ public class UserService {
         return this.userRepository.findOneByEmail(email);
     }
 
+    
+
 
     public User handlSaveUser(User user){
         User eric = this.userRepository.save(user);
         System.out.println(eric);
         return eric;
 
+    }
+    
+    
+    public User getUserById(long id){
+        return this.userRepository.findById(id);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,8 +53,16 @@ public class UserController {
 
     @RequestMapping("/admin/user/{id}")//GET
     public String getUserDetailPage(Model model, @PathVariable long id){
-        model.addAttribute("id", id); 
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user); 
         return "admin/user/show";
+    }
+
+    @RequestMapping("/admin/user/update/{id}")//GET
+    public String getUpdateUserPage(Model model, @PathVariable long id){
+        User currentUser = this.userService.getUserById(id);
+        model.addAttribute("newUser", currentUser); 
+        return "admin/user/update";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)//POST
@@ -61,23 +70,19 @@ public class UserController {
         this.userService.handlSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
+
+    @PostMapping("/admin/user/update")//POST
+    public String postUpdateUser(Model model,@ModelAttribute("newUser") User hoidanit){
+        User currentUser = this.userService.getUserById(hoidanit.getId());
+        if(currentUser != null){
+            currentUser.setFullName(hoidanit.getFullName());
+            currentUser.setAddress(hoidanit.getAddress());
+            currentUser.setPhone(hoidanit.getPhone());
+            
+            this.userService.handlSaveUser(currentUser);
+        }        
+        return "redirect:/admin/user";
+    }
     
 }
 
-
-// @RestController
-// public class UserController {
-
-
-//     // DI: Dependancy Injection
-//     private UserService userService;
-
-//     public UserController(UserService userService) {
-//         this.userService = userService;
-//     }
-
-//     @GetMapping("/")
-//     public String getHomePage(){
-//         return this.userService.handleHello();
-//     }
-// }
