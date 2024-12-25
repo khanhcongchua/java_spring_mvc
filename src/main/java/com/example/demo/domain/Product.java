@@ -1,11 +1,16 @@
 package com.example.demo.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +25,11 @@ public class Product {
     private long sold;  
     private String factory;  
     private String target;
+
+
+    @OneToMany(mappedBy = "product")
+    List<OrderDetail> orderDetails;
+
     public long getId() {
         return id;
     }
@@ -86,6 +96,7 @@ public class Product {
                 + detailDesc + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory="
                 + factory + ", target=" + target + "]";
     }
+    
     
 
 

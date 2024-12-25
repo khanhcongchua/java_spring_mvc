@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.admin;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class UserController {
         List<User> users = this.userService.getAllUsers();
         System.out.println(">>>>check userlist : " + users);
         model.addAttribute("users1", users);//(gia tri nhan duoc ben  view, gia tri ben controller)
-        return "admin/user/table-user";
+        return "admin/user/show";
     }
 
     @RequestMapping("/admin/user/create")//GET
@@ -55,7 +55,7 @@ public class UserController {
     public String getUserDetailPage(Model model, @PathVariable long id){
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user); 
-        return "admin/user/show";
+        return "admin/user/detail";
     }
 
     @RequestMapping("/admin/user/update/{id}")//GET
