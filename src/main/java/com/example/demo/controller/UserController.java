@@ -78,9 +78,27 @@ public class UserController {
             currentUser.setFullName(hoidanit.getFullName());
             currentUser.setAddress(hoidanit.getAddress());
             currentUser.setPhone(hoidanit.getPhone());
-            
+
             this.userService.handlSaveUser(currentUser);
         }        
+        return "redirect:/admin/user";
+    }
+
+    @GetMapping("/admin/user/delete/{id}")//GET
+    public String getDeleteUserPage(Model model, @PathVariable long id){
+        model.addAttribute("id", id); 
+
+        // User user = new User();
+        // user.setId(id);
+        model.addAttribute("newUser", new User()); 
+
+        return "admin/user/delete";
+    }
+
+
+    @RequestMapping(value = "/admin/user/delete", method = RequestMethod.POST)//POST
+    public String postDeleteUser(Model model, @ModelAttribute("newUser") User eric){
+        this.userService.deleteUserById(eric.getId());
         return "redirect:/admin/user";
     }
     
