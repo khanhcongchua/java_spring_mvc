@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UploadService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.ServletContext;
@@ -29,11 +32,17 @@ import jakarta.servlet.ServletContext;
 public class UserController {
     // DI: Dependancy Injection
     private final UserService userService;
-    private final ServletContext servletContext;
-    public UserController(UserService userService, ServletContext servletContext
+    private final UploadService  uploadService;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserController(
+        UserService userService, 
+        UploadService  uploadService,
+        PasswordEncoder passwordEncoder
     ) {
         this.userService = userService;
-        this.servletContext = servletContext;
+        this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
@@ -76,35 +85,21 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)//POST
     public String createUserPage(Model model, 
-                                @ModelAttribute("newUser") User hoidanit
-                                ,@RequestParam("hoidanitFile") MultipartFile file
-                                ){
+                                @ModelAttribute("newUser") User hoidanit,
+                                @RequestParam("hoidanitFile") MultipartFile file)
+                                
+    {
 
-
-        // private final ServletContext servletContext;  
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");     
+        String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());
         
-        try {
-            byte[] bytes = file.getBytes();
-        
-        String rootPath = this.servletContext.getRealPath("/resources/images/");  
 
-        File dir = new File(rootPath + File.separator + "avatar");  
-        if (!dir.exists())  
-            dir.mkdirs();  
+        hoidanit.setAvatar(avatar);
+        hoidanit.setPassword(hashPassword);
+        hoidanit.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
 
-        // Create the file on server  
-        File serverFile = new File(dir.getAbsolutePath() + File.separator +  
-            +System.currentTimeMillis() + "." + file.getOriginalFilename());  
-
-        BufferedOutputStream stream = new BufferedOutputStream(  
-            new FileOutputStream(serverFile));  
-        stream.write(bytes);  
-        stream.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
-        // this.userService.handlSaveUser(hoidanit);
+        //save user
+        this.userService.handlSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
 
