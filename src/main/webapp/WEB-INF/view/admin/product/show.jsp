@@ -53,9 +53,9 @@
                                                     <c:forEach var="user" items="${users1}">
                                                         <tr>
                                                             <th>${user.id}</th>
-                                                            <td>${user.email}</td>
+                                                            <!-- <td>${user.email}</td>
                                                             <td>${user.fullName}</td>
-                                                            <td>${user.role.name}</td>
+                                                            <td>${user.role.name}</td> -->
                                                             <td>
                                                                 <a href="/admin/user/${user.id}" type="button"
                                                                     class="btn btn-success">View</a>

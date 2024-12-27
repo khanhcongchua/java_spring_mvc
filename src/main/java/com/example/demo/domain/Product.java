@@ -2,12 +2,18 @@ package com.example.demo.domain;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Range;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -16,13 +22,31 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;  
 
-    private String name;  
-    private double price;  
+    @NotNull
+    @Size(min = 2, message = "Your name have must than 2 char:>>>")
+    private String name; 
+    
+    @NotNull
+    @DecimalMin(value = "1.0", message = "price is not than 0:>>>")
+    private double price;
+    
     private String image;  
-    private String detailDesc;  
+
+    @NotNull(message = "not empty")
+    @Size(min = 1, message = "detailDesc is not empty:>>>")
+    private String detailDesc;
+
+    @NotNull(message = "not empty")
+    @Size(min = 1, message = "shortDesc is not empty:>>>")
     private String shortDesc;  
+
+    
     private long quantity;  
-    private long sold;  
+
+    
+    private long sold;
+    
+    
     private String factory;  
     private String target;
 
