@@ -4,12 +4,15 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.BindException;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,7 @@ import com.example.demo.service.UploadService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.ServletContext;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -85,10 +89,18 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)//POST
     public String createUserPage(Model model, 
-                                @ModelAttribute("newUser") User hoidanit,
-                                @RequestParam("hoidanitFile") MultipartFile file)
+                                @Valid @ModelAttribute("newUser")  User hoidanit,
+                                BindingResult bindingResult,
+                                @RequestParam("hoidanitFile") MultipartFile file
+                                
+                                )
                                 
     {
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for(FieldError error : errors){
+            System.out.println( ">>>>>>>>>>>>>>>>>>>>>>>>>......" + error.getObjectName() + "-" + error.getDefaultMessage() );
+        }
+
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");     
         String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());
