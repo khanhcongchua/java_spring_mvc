@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Product;
@@ -20,6 +22,13 @@ public class ProductService {
         System.out.println(flower);
         return flower;
     }
+
+
+
+    public List<Product> getAllProducts(){
+        return this.productRepository.findAll();
+    }
+
 
 
 

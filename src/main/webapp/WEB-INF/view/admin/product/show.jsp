@@ -50,19 +50,19 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach var="user" items="${users1}">
+                                                    <c:forEach var="flower" items="${flowers1}">
                                                         <tr>
-                                                            <th>${user.id}</th>
-                                                            <!-- <td>${user.email}</td>
-                                                            <td>${user.fullName}</td>
-                                                            <td>${user.role.name}</td> -->
+                                                            <th>${flower.id}</th>
+                                                            <td>${flower.name}</td>
+                                                            <td>${flower.price}</td>
+                                                            <td>${flower.factory}</td>
                                                             <td>
-                                                                <a href="/admin/user/${user.id}" type="button"
+                                                                <a href="/admin/product/${flower.id}" type="button"
                                                                     class="btn btn-success">View</a>
-                                                                <a href="/admin/user/update/${user.id}" type="button"
-                                                                    class="btn btn-warning">Edit</a>
-                                                                <a href="/admin/user/delete/${user.id}" type="button"
-                                                                    class="btn btn-danger">Delete</a>
+                                                                <a href="/admin/product/update/${flower.id}"
+                                                                    type="button" class="btn btn-warning">Edit</a>
+                                                                <a href="/admin/product/delete/${flower.id}"
+                                                                    type="button" class="btn btn-danger">Delete</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -88,7 +88,7 @@
                     crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
                     crossorigin="anonymous"></script>
-                <script src="js/script.js"></script>
+                <!-- <script src="js/script.js"></script> -->
             </body>
 
             </html>

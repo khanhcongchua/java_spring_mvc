@@ -81,7 +81,6 @@
                                     </div>
                                 </div>
 
-
                             </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />
@@ -93,7 +92,7 @@
                     crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
                     crossorigin="anonymous"></script>
-                <script src="js/script.js"></script>
+                <!-- <script src="js/script.js"></script> -->
             </body>
 
             </html>

@@ -35,10 +35,10 @@ public class ProductController {
         this.uploadService = uploadService;
     }
     
-    @GetMapping("/admin/product")
-    public String getProducts(){
-        return "admin/product/show";  
-    }
+    // @GetMapping("/admin/product")
+    // public String getProducts(){
+    //     return "admin/product/show";  
+    // }
 
 
 
@@ -80,6 +80,15 @@ public class ProductController {
         this.productService.handlSaveProduct(flower);
         return "redirect:/admin/product";
     }
+
+    @RequestMapping("/admin/product")
+    public String getProductPage(Model model){
+        List<Product> flowers = this.productService.getAllProducts();
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..>>check fowerlist : " + flowers);
+        model.addAttribute("flowers1", flowers);//(gia tri nhan duoc ben  view, gia tri ben controller)
+        return "admin/product/show";
+    }
+
 
 
 }
