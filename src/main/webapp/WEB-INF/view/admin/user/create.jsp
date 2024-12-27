@@ -63,7 +63,7 @@
                                             <h3>Create a user</h3>
                                             <hr />
                                             <form:form method="post" action="/admin/user/create"
-                                                modelAttribute="newUser" class="row">
+                                                modelAttribute="newUser" class="row" enctype="multipart/form-data">
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label class="form-label">Email:</label>
                                                     <form:input type="email" class="form-control" path="email" />
@@ -93,7 +93,8 @@
                                                         <label class="input-group-text"
                                                             for="inputGroupSelect01">Role:</label>
                                                     </div>
-                                                    <form:select class="custom-select" id="inputGroupSelect01">
+                                                    <form:select class="custom-select" id="inputGroupSelect01"
+                                                        path="role.name">
                                                         <form:option value="ADMIN">Admin</form:option>
                                                         <form:option value="USER">User</form:option>
                                                     </form:select>
@@ -105,7 +106,7 @@
                                                         <label class="custom-file-label"
                                                             for="avatarFile">Avatar:</label>
                                                         <input type="file" class="custom-file-input" id="avatarFile"
-                                                            accept=".png, .jpg, .jpeg">
+                                                            accept=".png, .jpg, .jpeg" name="hoidanitFile" />
 
                                                     </div>
 
