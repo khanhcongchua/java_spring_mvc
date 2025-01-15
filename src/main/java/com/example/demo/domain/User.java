@@ -2,6 +2,8 @@ package com.example.demo.domain;
 
 import java.util.List;
 
+import com.example.demo.service.validator.StrongPassword;
+
 // import org.hibernate.mapping.List;
 
 import jakarta.persistence.Entity;

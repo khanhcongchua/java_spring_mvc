@@ -1,11 +1,16 @@
 package com.example.demo.domain.dto;
 
+import com.example.demo.service.validator.RegisterChecked;
+
+@RegisterChecked
 public class RegisterDTO {
     private String firstName;
     private String lastName;
-    private String  email;
-    private String  password;
+    private String email;
+    private String password;
     private String ConfirmPassword;
+
+    
     public String getFirstName() {
         return firstName;
     }
