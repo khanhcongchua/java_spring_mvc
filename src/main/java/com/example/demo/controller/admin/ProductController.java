@@ -92,7 +92,7 @@ public class ProductController {
 
     @RequestMapping("/admin/product/{id}")//GET
     public String getProductDetailPage(Model model, @PathVariable long id){
-        Product flower = this.productService.getProductById(id);
+        Product flower = this.productService.getProductById(id).get();
         model.addAttribute("flower", flower); 
         return "admin/product/detail";
     }
@@ -114,7 +114,7 @@ public class ProductController {
 
     @RequestMapping("/admin/product/update/{id}")//GET
     public String getUpdateProductPage(Model model, @PathVariable long id){
-        Product currentProduct = this.productService.getProductById(id);
+        Product currentProduct = this.productService.getProductById(id).get();
         model.addAttribute("newProduct", currentProduct); 
         return "admin/product/update";
     }
@@ -132,9 +132,10 @@ public class ProductController {
         }
         
         
-        Product currentProduct = this.productService.getProductById(hoidanit.getId());
+        Product currentProduct = this.productService.getProductById(hoidanit.getId()).get();
 
         if(currentProduct != null){
+
             if(!file.isEmpty()){
                 String img = this.uploadService.handleSaveUploadFile(file, "products");     
                 currentProduct.setImage(img);

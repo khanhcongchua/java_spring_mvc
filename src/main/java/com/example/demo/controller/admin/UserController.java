@@ -121,7 +121,9 @@ public class UserController {
 
     @PostMapping("/admin/user/update")//POST
     public String postUpdateUser(Model model,@ModelAttribute("newUser") User hoidanit){
+
         User currentUser = this.userService.getUserById(hoidanit.getId());
+        
         if(currentUser != null){
             currentUser.setFullName(hoidanit.getFullName());
             currentUser.setAddress(hoidanit.getAddress());

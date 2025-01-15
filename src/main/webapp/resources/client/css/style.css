@@ -496,3 +496,11 @@
 }
 /*** Footer End ***/
 
+.truncate-multiline {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* Số dòng muốn hiển thị */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50px;
+}

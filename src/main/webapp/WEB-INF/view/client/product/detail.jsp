@@ -75,20 +75,28 @@
             <div class="container-fluid py-5 mt-5">
                 <div class="container py-5">
                     <div class="row g-4 mb-5">
+                        <div>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">detail</li>
+                                </ol>
+                            </nav>
+                        </div>
                         <div class="col-lg-8 col-xl-9">
                             <div class="row g-4">
                                 <div class="col-lg-6">
                                     <div class="border rounded">
                                         <a href="#">
-                                            <img src="/client/img/single-item.jpg" class="img-fluid rounded"
+                                            <img src="/images/products/${flower.image}" class="img-fluid rounded"
                                                 alt="Image">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h4 class="fw-bold mb-3">Brocoli</h4>
-                                    <p class="mb-3">Category: Vegetables</p>
-                                    <h5 class="fw-bold mb-3">3,35 $</h5>
+                                    <h4 class="fw-bold mb-3">${flower.name}</h4>
+                                    <p class="mb-3">Category: ${flower.target}</p>
+                                    <h5 class="fw-bold mb-3">${flower.price}$</h5>
                                     <div class="d-flex mb-4">
                                         <i class="fa fa-star text-secondary"></i>
                                         <i class="fa fa-star text-secondary"></i>
@@ -96,10 +104,8 @@
                                         <i class="fa fa-star text-secondary"></i>
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <p class="mb-4">The generated Lorem Ipsum is therefore always free from repetition
-                                        injected humour, or non-characteristic words etc.</p>
-                                    <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock
-                                        flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
+                                    <p class="mb-4">${flower.detailDesc}</p>
+                                    <p class="mb-4">${flower.shortDesc}</p>
                                     <div class="input-group quantity mb-5" style="width: 100px;">
                                         <div class="input-group-btn">
                                             <button class="btn btn-sm btn-minus rounded-circle bg-light border">
@@ -131,23 +137,18 @@
                                     <div class="tab-content mb-5">
                                         <div class="tab-pane active" id="nav-about" role="tabpanel"
                                             aria-labelledby="nav-about-tab">
-                                            <p>The generated Lorem Ipsum is therefore always free from repetition
-                                                injected humour, or non-characteristic words etc.
-                                                Susp endisse ultricies nisi vel quam suscipit </p>
-                                            <p>Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish
-                                                snailfish filefish Antarctic
-                                                icefish goldeye aholehole trumpetfish pilot fish airbreathing catfish,
-                                                electric ray sweeper.</p>
+                                            <p>${flower.detailDesc}</p>
+                                            <p>${flower.shortDesc}</p>
                                             <div class="px-2">
                                                 <div class="row g-4">
                                                     <div class="col-6">
                                                         <div
                                                             class="row bg-light align-items-center text-center justify-content-center py-2">
                                                             <div class="col-6">
-                                                                <p class="mb-0">Weight</p>
+                                                                <p class="mb-0">Unit</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <p class="mb-0">1 kg</p>
+                                                                <p class="mb-0">1 bowl</p>
                                                             </div>
                                                         </div>
                                                         <div
@@ -162,28 +163,28 @@
                                                         <div
                                                             class="row bg-light text-center align-items-center justify-content-center py-2">
                                                             <div class="col-6">
-                                                                <p class="mb-0">Quality</p>
+                                                                <p class="mb-0">Quatity</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <p class="mb-0">Organic</p>
+                                                                <p class="mb-0">${flower.quantity}</p>
                                                             </div>
                                                         </div>
                                                         <div
                                                             class="row text-center align-items-center justify-content-center py-2">
                                                             <div class="col-6">
-                                                                <p class="mb-0">Сheck</p>
+                                                                <p class="mb-0">Factory</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <p class="mb-0">Healthy</p>
+                                                                <p class="mb-0">${flower.factory}</p>
                                                             </div>
                                                         </div>
                                                         <div
                                                             class="row bg-light text-center align-items-center justify-content-center py-2">
                                                             <div class="col-6">
-                                                                <p class="mb-0">Min Weight</p>
+                                                                <p class="mb-0">Target</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <p class="mb-0">250 Kg</p>
+                                                                <p class="mb-0">${flower.target}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -199,7 +200,7 @@
                                                     <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
                                                     <div class="d-flex justify-content-between">
                                                         <h5>Jason Smith</h5>
-                                                        <div class="d-flex mb-3">
+                                                        <div class="d-flex mb-3">5
                                                             <i class="fa fa-star text-secondary"></i>
                                                             <i class="fa fa-star text-secondary"></i>
                                                             <i class="fa fa-star text-secondary"></i>
@@ -260,34 +261,65 @@
                                         <ul class="list-unstyled fruite-categorie">
                                             <li>
                                                 <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Roses</a>
                                                     <span>(3)</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Lyli</a>
                                                     <span>(5)</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Strawbery</a>
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Tulip</a>
                                                     <span>(2)</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Orchid</a>
                                                     <span>(8)</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Sunflower</a>
                                                     <span>(5)</span>
                                                 </div>
                                             </li>
+                                            <li>
+                                                <div class="d-flex justify-content-between fruite-name">
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Daisy</a>
+                                                    <span>(5)</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex justify-content-between fruite-name">
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Jasmin</a>
+                                                    <span>(5)</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex justify-content-between fruite-name">
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Lavender</a>
+                                                    <span>(5)</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex justify-content-between fruite-name">
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Hibiscus</a>
+                                                    <span>(5)</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex justify-content-between fruite-name">
+                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Marigold</a>
+                                                    <span>(5)</span>
+                                                </div>
+                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -310,7 +342,7 @@
                             <div class="col-lg-3">
                                 <a href="#">
                                     <h1 class="text-primary mb-0">Fruitables</h1>
-                                    <p class="text-secondary mb-0">Fresh products</p>
+                                    <p class="text-secondary mb-0">Flower products</p>
                                 </a>
                             </div>
                             <div class="col-lg-6">

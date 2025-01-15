@@ -29,6 +29,7 @@
 
             <!-- Template Stylesheet -->
             <link href="/client/css/style.css" rel="stylesheet">
+            <!-- <link href="../../../../resources/client/css/style.css" rel="stylesheet"> -->
         </head>
 
         <body>
@@ -123,27 +124,39 @@
                                             <c:forEach var="flower" items="${flowers1}">
 
                                                 <div class="col-md-6 col-lg-4 col-xl-3">
-                                                    <div class="rounded position-relative fruite-item">
-                                                        <div class="fruite-img">
-                                                            <img src="/images/products/${flower.image}"
-                                                                class="img-fluid w-100 rounded-top" alt="">
-                                                        </div>
-                                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                            style="top: 10px; left: 10px;">${flower.target}</div>
-                                                        <div
-                                                            class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                            <h4>${flower.name}</h4>
-                                                            <p>${flower.detailDesc}</p>
-                                                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}
-                                                                </p>
-                                                                <a href="#"
-                                                                    class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                        class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                    Add to cart</a>
+                                                    <a href="/product/${flower.id}">
+                                                        <div class="rounded position-relative fruite-item">
+                                                            <div class="fruite-img">
+                                                                <img src="/images/products/${flower.image}"
+                                                                    class="img-fluid w-100 rounded-top" alt="">
+                                                            </div>
+                                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                                style="top: 10px; left: 10px;">${flower.target}</div>
+                                                            <div
+                                                                class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                                <h4>${flower.name}</h4>
+                                                                <p class="truncate-multiline" style="display: -webkit-box;  
+                                                                -webkit-box-orient: vertical;  
+                                                                -webkit-line-clamp: 2; 
+                                                                overflow: hidden;  
+                                                                text-overflow: ellipsis;">
+                                                                    ${flower.shortDesc}</p>
+                                                                <div
+                                                                    class="d-flex justify-content-between flex-lg-wrap">
+                                                                    <p class="text-dark fs-5 fw-bold mb-0">
+                                                                        $${flower.price}
+                                                                    </p>
+                                                                    <a href="/product/${flower.id}"
+                                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                        Add to cart</a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+
+                                                    </a>
+
+
                                                 </div>
                                             </c:forEach>
                                         </div>
