@@ -58,6 +58,11 @@ public class HomePageController {
                                 BindingResult bindingresult
                                 ) {
         
+
+        if(bindingresult.hasErrors()){
+            return "client/auth/register";
+        }
+        
         List<FieldError> errors = bindingresult.getFieldErrors();
         for(FieldError error : errors){
             System.out.println( ">>>>>>>>>>>>>>>>>>>>>>>>>......" + error.getField() + "-" + error.getDefaultMessage() );
