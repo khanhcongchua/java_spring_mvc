@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableMethodSecurity(securedEnabled = true)
 
 public class SecuriyConfiguration {
+    // crso
 
     @Bean
     public  PasswordEncoder passwordEncoder() {

@@ -49,6 +49,16 @@ public class RegisterValidator implements ConstraintValidator<RegisterChecked, R
 
         }
 
+        //check if first name field is empty
+        if(user.getFirstName().isEmpty()){
+            context.buildConstraintViolationWithTemplate("tên không được trống oke!") //bao loi gi
+            .addPropertyNode("firstName") //truong can bao loi
+            .addConstraintViolation()
+            .disableDefaultConstraintViolation();
+            valid = false;
+
+        }
+
 
         return valid;
 
