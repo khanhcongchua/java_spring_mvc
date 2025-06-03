@@ -56,7 +56,7 @@ public class User {
     private List<Order> orders;
 
 
-    
+
     public Role getRole() {
         return role;
     }
@@ -134,8 +134,5 @@ public class User {
         return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
                 + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
-    
 
-    
-    
 }
